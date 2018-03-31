@@ -891,29 +891,29 @@
    "id": "germany",
    "name": "Germany",
    "adjective": "German",
-   "color": "#808080"
+   "color": "#505050"
   },
   {
    "id": "italy",
    "name": "Italy",
    "adjective": "Italian",
-   "color": "#808000"
+   "color": "#008000"
   },
   {
    "id": "russia",
    "name": "Russia",
    "adjective": "Russian",
-   "color": "#008000"
+   "color": "#800080"
   },
   {
    "id": "turkey",
    "name": "Turkey",
    "adjective": "Turkish",
-   "color": "#800080"
+   "color": "#808000"
   }
  ],
- "neutralColor": "#e9ddaf",
- "waterColor": "#000080",
+ "neutralColor": "#CCCAB7",
+ "waterColor": "#6BBEEA",
  "victoryConditions": [
   {
    "type": "domination",

@@ -117,7 +117,7 @@ function convertPathToCoords(path) {
                 nextIsCoords = false;
             } else {
                 coords.push(+x + coords[coords.length-2]);
-                coords.push(+y + coords[coords.length-1]);
+                coords.push(+y + coords[coords.length-2]);
             }
         }
     });
