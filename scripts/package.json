@@ -1,0 +1,16 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "utility scripts for diplomacy",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "svg2map": "node svg2map.js"
+  },
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "inquirer": "^5.2.0",
+    "svgson": "^2.1.1"
+  }
+}

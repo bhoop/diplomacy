@@ -1,0 +1,47 @@
+{
+    "title": "Classic Diplomacy",
+    "players": [
+        {
+            "id": "austria",
+            "name": "Austria-Hungary",
+            "adjective": "Austrian"
+        },
+        {
+            "id": "england",
+            "name": "England",
+            "adjective": "English"
+        },
+        {
+            "id": "france",
+            "name": "France",
+            "adjective": "French"
+        },
+        {
+            "id": "germany",
+            "name": "Germany",
+            "adjective": "German"
+        },
+        {
+            "id": "italy",
+            "name": "Italy",
+            "adjective": "Italian"
+        },
+        {
+            "id": "russia",
+            "name": "Russia",
+            "adjective": "Russian"
+        },
+        {
+            "id": "turkey",
+            "name": "Turkey",
+            "adjective": "Turkish"
+        }
+    ],
+    "victoryConditions": [
+       {
+          "type": "domination",
+          "capturePoints": 18
+       }
+    ]
+ }
+ 
