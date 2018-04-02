@@ -1,56 +1,55 @@
 {
-    "title": "Classic Diplomacy",
-    "players": [
-        {
-         "id": "austria",
-         "name": "Austria-Hungary",
-         "adjective": "Austrian",
-         "color": "#800000"
-        },
-        {
-         "id": "england",
-         "name": "England",
-         "adjective": "English",
-         "color": "#000080"
-        },
-        {
-         "id": "france",
-         "name": "France",
-         "adjective": "French",
-         "color": "#008080"
-        },
-        {
-         "id": "germany",
-         "name": "Germany",
-         "adjective": "German",
-         "color": "#505050"
-        },
-        {
-         "id": "italy",
-         "name": "Italy",
-         "adjective": "Italian",
-         "color": "#008000"
-        },
-        {
-         "id": "russia",
-         "name": "Russia",
-         "adjective": "Russian",
-         "color": "#800080"
-        },
-        {
-         "id": "turkey",
-         "name": "Turkey",
-         "adjective": "Turkish",
-         "color": "#808000"
-        }
-       ],
-       "neutralColor": "#CCCAB7",
-       "waterColor": "#6BBEEA",
-       "victoryConditions": [
-       {
-          "type": "domination",
-          "capturePoints": 18
-       }
-    ]
- }
- 
+  "title": "Classic Diplomacy",
+  "teams": [
+    {
+      "id": "austria",
+      "name": "Austria-Hungary",
+      "adjective": "Austrian",
+      "color": "#800000"
+    },
+    {
+      "id": "england",
+      "name": "England",
+      "adjective": "English",
+      "color": "#000080"
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "adjective": "French",
+      "color": "#008080"
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "adjective": "German",
+      "color": "#505050"
+    },
+    {
+      "id": "italy",
+      "name": "Italy",
+      "adjective": "Italian",
+      "color": "#008000"
+    },
+    {
+      "id": "russia",
+      "name": "Russia",
+      "adjective": "Russian",
+      "color": "#800080"
+    },
+    {
+      "id": "turkey",
+      "name": "Turkey",
+      "adjective": "Turkish",
+      "color": "#808000"
+    }
+  ],
+  "neutralColor": "#CCCAB7",
+  "waterColor": "#6BBEEA",
+  "victoryConditions": [
+    {
+      "type": "domination",
+      "capturePoints": 18
+    }
+  ]
+}

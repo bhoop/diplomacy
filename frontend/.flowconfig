@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/eslint-plugin-jsx-a11y/*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.system.node.resolve_dirname=src
+
+[strict]

@@ -303,6 +303,10 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
+libtess@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/libtess/-/libtess-1.2.2.tgz#173eb52a1a57a0238fe48f05d12245074497f898"
+
 lodash@^4.3.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
@@ -362,6 +366,18 @@ os-tmpdir@~1.0.2:
 path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
+
+polygon-tools@^0.4.8:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/polygon-tools/-/polygon-tools-0.4.8.tgz#07ea8f2c6dd09ebe707b9746dd7b7d9adb78b24a"
+  dependencies:
+    libtess "^1.2.2"
+
+polylabel@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/polylabel/-/polylabel-1.0.2.tgz#90c11602fb217a65b78ac2110ac5fcb00b652560"
+  dependencies:
+    tinyqueue "^1.1.0"
 
 process-nextick-args@~2.0.0:
   version "2.0.0"
@@ -511,6 +527,10 @@ thenify-all@^1.0.0, thenify-all@^1.6.0:
 through@^2.3.6:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
+
+tinyqueue@^1.1.0:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/tinyqueue/-/tinyqueue-1.2.3.tgz#b6a61de23060584da29f82362e45df1ec7353f3d"
 
 tmp@^0.0.33:
   version "0.0.33"

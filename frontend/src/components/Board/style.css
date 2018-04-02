@@ -1,0 +1,31 @@
+.map {
+  background: #fff;
+}
+/* .map__territory {
+  pointer-events: painted;
+} */
+.map__territory-bg {
+  opacity: 0.9;
+  transition: opacity 0.1s;
+}
+.map__territory-border {
+  stroke: #fff;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+.map__territory:hover .map__territory-bg {
+  opacity: 0.65;
+}
+.map__territory--vp .map__territory-bg {
+  opacity: 1;
+}
+.map__territory--vp .map__territory-border {
+  /* stroke-width: 3px; */
+}
+.map__region {
+  pointer-events: none;
+  stroke-width: 10;
+  stroke-opacity: 0.5;
+  stroke-linejoin: round;
+  fill: transparent;
+}
