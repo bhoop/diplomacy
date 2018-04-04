@@ -1,17 +1,19 @@
 // @flow
 import * as React from "react";
-import type { MapConfig } from "flowtypes";
+import type { MapConfig, GameState } from "flowtypes";
 import "./style.css";
 
 const LAND_COLOR = "#CCCAB7";
 const WATER_COLOR = "#6BBEEA";
 
 type Props = {
-  map: MapConfig
+  map: MapConfig,
+  game: GameState
 };
 
 type State = {
   mapConfig: ?MapConfig,
+  teams: { [string]: { color: string } },
   territories: Array<{
     id: string,
     type: "land" | "water",
@@ -34,14 +36,17 @@ type State = {
 class Board extends React.Component<Props, State> {
   state = {
     mapConfig: null,
+    teams: {},
     territories: [],
     regions: []
   };
 
   static getDerivedStateFromProps(newProps: Props, prevState: State) {
     if (newProps.map === prevState.mapConfig) return null;
-    return {
+
+    let nextState = {
       mapConfig: newProps.map,
+      teams: {},
       territories: newProps.map.territories.map(t => ({
         id: t.id,
         path: t.border,
@@ -57,14 +62,27 @@ class Board extends React.Component<Props, State> {
         color: t.color
       }))
     };
+    newProps.map.teams.forEach(t => {
+      nextState.teams[t.id] = t;
+    });
+
+    return nextState;
   }
 
   render() {
+    // shade territories that are occupied by a unit (or owned by a team)
+    let occupiedBy = {};
+    for (let uid in this.props.game.units) {
+      const [team, type, idx] = uid.split("-");
+      const [territory, coast] = this.props.game.units[uid].split(/ /);
+      occupiedBy[territory] = this.state.teams[team].color;
+    }
+
     return (
       <svg
         className="map"
-        width={this.props.map.width}
-        height={this.props.map.height}
+        width={this.props.map.width * 0.7}
+        height={this.props.map.height * 0.7}
         viewBox={`0 0 ${this.props.map.width} ${this.props.map.height}`}
       >
         <defs>
@@ -98,10 +116,22 @@ class Board extends React.Component<Props, State> {
                     height={this.props.map.height}
                     fill={bgColor}
                   />
+                  {/* {occupiedBy[t.id] ? ( */}
+                  {this.props.game.control[t.id] ? (
+                    <rect
+                      x="0"
+                      y="0"
+                      width={this.props.map.width}
+                      height={this.props.map.height}
+                      fill={
+                        this.state.teams[this.props.game.control[t.id]].color
+                      }
+                      className="map__occupied-territory"
+                    />
+                  ) : null}
                   {t.isSupply ? (
                     <polygon
-                      fill="#000"
-                      fillOpacity={0.1}
+                      className="map__vp"
                       points={calculateStarPoints(
                         t.labelCoord[0],
                         t.labelCoord[1],
@@ -122,6 +152,7 @@ class Board extends React.Component<Props, State> {
         {this.state.regions.map(r => {
           return (
             <polygon
+              key={r.path}
               points={r.path}
               className="map__region"
               stroke={r.color}
@@ -129,32 +160,21 @@ class Board extends React.Component<Props, State> {
             />
           );
         })}
-        {/* <defs>
-            {map.territories.map(t => (
-              <clipPath id={`map-terrpath-${t.id}`} key={t.id}>
-                <polygon points={t.border}/>
-              </clipPath>
-            ))}
-          <clipPath id="myClip">
-            <circle cx="30" cy="30" r="20"/>
-            <circle cx="70" cy="70" r="20"/>
-          </clipPath>
-
-          </defs>
-          {map.territories.map(t => (
-            <g>
-
-            </g>
-            <g clip-path=
-            return (
-              <polygon
-                className="map__territory"
-                points={t.border}
-                fill={owners[t.region].color}
-                />
-            );
-          ))} */}
-        <use href="#star" x="100" y="100" width="500" height="500" />
+        {this.state.territories.map(t => {
+          let className = "map__territory-label";
+          if (t.isSupply) className += " is-vp";
+          return (
+            <text
+              key={t.id}
+              className={className}
+              textAnchor="middle"
+              x={t.labelCoord[0]}
+              y={t.labelCoord[1] + (t.isSupply ? 15 : 0)}
+            >
+              {t.id}
+            </text>
+          );
+        })}
       </svg>
     );
   }

@@ -14,5 +14,18 @@ export type MapConfig = {
     adjective: string,
     color: string,
     border: string
-  }>
+  }>,
+  setup: {
+    [string]: {
+      owner: string,
+      unit?: "army" | "fleet"
+    }
+  }
+};
+
+export type GameState = {
+  map: MapConfig,
+  year: number,
+  season: "spring" | "spring-resolve" | "fall" | "fall-resolve" | "winter",
+  units: { [string]: string }
 };
