@@ -1,0 +1,48 @@
+.order-select {
+    display: inline-flex;
+    margin-left: 6px;
+    white-space: nowrap;
+    align-items: center;
+    cursor: default;
+    position: relative;
+    background: blue;
+    z-index: 1;
+}
+.order-select:active {
+    z-index: 2;
+}
+.order-select::after {
+    content: "⏷";
+    margin-left: 3px;
+    opacity: 0.1;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.1s, opacity 0.5s;
+}
+.order-select:hover::after {
+    width: 10px;
+    opacity: 0.3;
+}
+
+.order-select::before {
+    content: " ";
+    position: absolute;
+    left: -6px;
+    top: -3px;
+    right: -6px;
+    bottom: -3px;
+    border: 1px solid transparent;
+    background: #fff;
+    z-index: 0;
+}
+.order-select:active::before {
+    border-color: red;
+}
+
+.order-select__value {
+    z-index: 1;
+    user-select: none;
+}
+.order-select__value--placeholder {
+    color: #ccc;
+}

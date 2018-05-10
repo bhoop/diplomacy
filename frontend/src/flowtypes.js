@@ -3,6 +3,7 @@ export type MapConfig = {
   height: number,
   territories: Array<{
     id: string,
+    name: string,
     type: "land" | "water",
     border: string,
     labelCoord: [number, number],
@@ -23,9 +24,47 @@ export type MapConfig = {
   }
 };
 
-export type GameState = {
-  map: MapConfig,
-  year: number,
-  season: "spring" | "spring-resolve" | "fall" | "fall-resolve" | "winter",
-  units: { [string]: string }
+export type Season = "spring" | "spring-resolve" | "fall" | "fall-resolve" | "winter";
+
+export type OrderCommand = "" | "M" | "H" | "S"| "C";
+
+type OrderMeta = {
+  status: "pending" | "valid" | "invalid" | "successful" | "failed",
+  statusMessage: string
+}
+type CommandOrder = {
+  type: "command",
+  unit: string,
+  command: OrderCommand,
+  target: string,
+  targetCommand: OrderCommand,
+  destination: string,
+} & OrderMeta;
+type RetreatOrder = {
+  type: "retreat",
+  unit: string,
+  destination: string,
+} & OrderMeta;
+type BuildOrder = {
+  type: "build",
+  unitType: "A" | "F" | "",
+  destination: string
 };
+export type Order = CommandOrder | RetreatOrder | BuildOrder;
+
+export type GameState = {
+  year: number,
+  season: Season,
+  units: { [string]: string },
+  control: { [string]: string },
+  orders: Array<Order>,
+};
+
+export type MapProvinces = Array<{
+  id: string,
+  path: string,
+  name: string,
+  labelPoint: [number, number],
+  type: "land" | "water",
+  isSupply: boolean
+}>;

@@ -4,5 +4,8 @@
 			"path": "frontend"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSave": true,
+		"flow.useNPMPackagedFlow": true
+	}
 }

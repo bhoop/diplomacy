@@ -1,0 +1,8 @@
+.unit-tag {
+    padding: 0.25em 0.4em;
+    border-radius: 0.6em;
+    display: inline-block;
+    font-weight: 600;
+    white-space: nowrap;
+    color: #eee;
+}

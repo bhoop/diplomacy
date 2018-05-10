@@ -5,46 +5,82 @@
       "id": "austria",
       "name": "Austria-Hungary",
       "adjective": "Austrian",
-      "color": "#800000"
+      "color": "#800000",
+      "startingUnits": [
+        "A Vie",
+        "A Bud",
+        "F Tri"
+      ]
     },
     {
       "id": "england",
       "name": "England",
       "adjective": "English",
-      "color": "#000080"
+      "color": "#000080",
+      "startingUnits": [
+        "F Edi",
+        "F Lon",
+        "A Lvp"
+      ]
     },
     {
       "id": "france",
       "name": "France",
       "adjective": "French",
-      "color": "#008080"
+      "color": "#008080",
+      "startingUnits": [
+        "F Bre",
+        "A Par",
+        "A Mar"
+      ]
     },
     {
       "id": "germany",
       "name": "Germany",
       "adjective": "German",
-      "color": "#505050"
+      "color": "#505050",
+      "startingUnits": [
+        "F Kie",
+        "A Ber",
+        "A Mun"
+      ]
     },
     {
       "id": "italy",
       "name": "Italy",
       "adjective": "Italian",
-      "color": "#008000"
+      "color": "#008000",
+      "startingUnits": [
+        "A Ven",
+        "A Rom",
+        "F Nap"
+      ]
     },
     {
       "id": "russia",
       "name": "Russia",
       "adjective": "Russian",
-      "color": "#800080"
+      "color": "#800080",
+      "startingUnits": [
+        "A War",
+        "F Stp (South Coast)",
+        "A Mos",
+        "F Sev"
+      ]
     },
     {
       "id": "turkey",
       "name": "Turkey",
       "adjective": "Turkish",
-      "color": "#808000"
+      "color": "#808000",
+      "startingUnits": [
+        "A Con",
+        "F Ank",
+        "A Smy"
+      ]
     }
   ],
-  "neutralColor": "#CCCAB7",
+  "landColor": "#CCCAB7",
   "waterColor": "#6BBEEA",
   "victoryConditions": [
     {

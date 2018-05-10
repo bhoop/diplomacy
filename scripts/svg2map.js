@@ -45,7 +45,7 @@ inquirer
           {
             width: json.attrs.width,
             height: json.attrs.height,
-            territories: []
+            provinces: []
           },
           JSON.parse(fs.readFileSync(`../assets/maps/source/map-${file}.json`))
         );
@@ -65,8 +65,7 @@ inquirer
                 // todo: add full territory name to SVG and load it here
                 title: "",
                 type: region === "ocean" ? "ocean" : "land",
-                border: "",
-                center: [0, 0],
+                border: [],
                 // todo: calculate best place to display where units sit in the territory
                 spawnCoord: [],
                 labelCoord: []
@@ -80,13 +79,8 @@ inquirer
                 switch (svgTag.attrs.type) {
                   // <path type="territory" .../> becomes border
                   case "territory":
-                    const coords = convertPathToCoords(svgTag.attrs.d).join(
-                      " "
-                    );
-                    let points = groupCoordsWithArrays(coords);
-                    boundaries[region].push(points.slice());
-
-                    obj.border = coords;
+                    const points = convertPathToPoints(svgTag.attrs.d);
+                    obj.border = points;
                     obj.labelCoord = getCenterPoint(...points);
                     // obj.spawnCoord = polygon
                     //   .centroid(points)
@@ -103,7 +97,7 @@ inquirer
                     // todo: calculate spawn position
                     obj.coasts.push({
                       name: svgTag.attrs.name || "Coast",
-                      path: convertPathToCoords(svgTag.attrs.d).join(" ")
+                      path: convertPathToPoints(svgTag.attrs.d)
                     });
                     // todo: if any coast points don't match a border point, add those points
                     // (and the two end coast points on either side) as a canal to the territory object
@@ -119,20 +113,9 @@ inquirer
               });
 
               // add this object to the global list of territories on this map
-              mapConfig.territories.push(obj);
+              mapConfig.provinces.push(obj);
             });
           });
-
-        // add "border" of home region for each player
-        mapConfig.teams.forEach(p => {
-          // console.log(boundaries[p.id]);
-          // console.log('------------------------------------');
-          // console.info(boundaries[p.id], polygon.union.call(null, boundaries[p.id]), '-------------------------------------------');
-          p.border = polygon
-            .union(...boundaries[p.id])[0]
-            .map(c => c.join(" "))
-            .join(" ");
-        });
 
         // write complete mapConfig out to a JSON file
         fs.writeFile(
@@ -149,7 +132,7 @@ inquirer
 // 	// Use user feedback for... whatever!!
 // });
 
-function convertPathToCoords(path) {
+function convertPathToPoints(path) {
   let coords = [];
   let nextIsCoords = false;
   path
@@ -158,47 +141,22 @@ function convertPathToCoords(path) {
     .split(" ")
     .forEach(p => {
       if (p === "m") nextIsCoords = true;
-      else if (p === "z") {
-      } else {
+      else if (p !== "z") {
         const [x, y] = p.split(",");
         if (nextIsCoords) {
-          coords.push(+x);
-          coords.push(+y);
+          coords.push([+x, +y]);
           nextIsCoords = false;
         } else {
-          coords.push(+x + coords[coords.length - 2]);
-          coords.push(+y + coords[coords.length - 2]);
+          coords.push([
+            +x + coords[coords.length-1][0],
+            +y + coords[coords.length-1][1]
+          ]);
         }
       }
     });
   return coords;
 }
 
-function groupCoordsWithArrays(path) {
-  const src = path.split(" "),
-    dst = [];
-  for (var i = 0, z = src.length; i < z; i += 2) {
-    dst.push([+src[i], +src[i + 1]]);
-  }
-  return dst;
-}
-
 function getCenterPoint(...points) {
   return polylabel([points], 1).map(p => Math.round(p));
-}
-
-function getCoastSpawnPoint(path, center) {
-  // find point on path that is closest to center
-  // return point 25% between path and center
-  let closest = { point: [0, 0], distance: Infinity };
-  groupCoordsWithArrays(path).forEach(p => {
-    const dist = Math.sqrt(
-      Math.pow(point[0] - center[0], 2) + Math.pow(point[1] - center[1], 2)
-    );
-    if (dist < closest.distance) closest = { point: p, distance: dist };
-  });
-  return [
-    Math.round((closest.point[0] * 3 + center[0]) / 4),
-    Math.round((closest.point[1] * 3 + center[1]) / 4)
-  ];
 }

@@ -1,12 +1,10 @@
 // @flow
 import * as React from "react";
-import Game from "./components/Game";
+// import Game from "./components/Game";
+import Sandbox from "./components/Sandbox";
 import "./App.css";
 
 import type { MapConfig, GameState } from "./flowtypes";
-
-const map: MapConfig = require("./tmp/standard.json");
-const game: GameState = require("./tmp/game.json");
 
 // let owners = {
 //   neutral: { color: map.neutralColor },
@@ -16,7 +14,8 @@ const game: GameState = require("./tmp/game.json");
 
 class App extends React.Component<*, *> {
   render() {
-    return <Game state={game} />;
+    return <Sandbox/>;
+    // return <Game state={game.state} map={map} />;
 
     // return (
     //   <div className="App">
